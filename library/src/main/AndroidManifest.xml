@@ -11,9 +11,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="com.apg.library.imagepicker.PICKIMAGE"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="com.apg.library.imagepicker"/>
             </intent-filter>
         </activity>
 
