@@ -21,7 +21,11 @@ public class AlphaImagePicker {
 
     public static void startPickImage(Activity activity, int requestCode,
                                       boolean isMultipleSelected) {
-        Intent intent = new Intent(activity, MainActivity.class);
+//        Intent intent = new Intent(activity, PickerActivity.class);
+//        intent.putExtra("isMultipleSelected", isMultipleSelected);
+//        activity.startActivityForResult(intent, requestCode);
+        Intent intent = new Intent("com.apg.library.imagepicker.PICKIMAGE");
+        intent.addCategory("com.apg.library.imagepicker");
         intent.putExtra("isMultipleSelected", isMultipleSelected);
         activity.startActivityForResult(intent, requestCode);
     }

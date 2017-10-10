@@ -7,8 +7,14 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
+            android:name=".PickerActivity">
+            <intent-filter>
+                <action android:name="com.apg.library.imagepicker.PICKIMAGE"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.apg.library.imagepicker"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

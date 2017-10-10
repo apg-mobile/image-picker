@@ -30,7 +30,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MainActivity extends AppCompatActivity {
+public class PickerActivity extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 15200;
 
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.library_activity_picker);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
 
         gridView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                AlphaImagePicker.startPickImage(MainActivity.this, 11, false);
+                AlphaImagePicker.startPickImage(PickerActivity.this, 11, false);
             }
         }, 5000);
     }
@@ -181,12 +181,12 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             if (view == null) {
-                view = View.inflate(MainActivity.this, R.layout.listitem_image, null);
+                view = View.inflate(PickerActivity.this, R.layout.listitem_image, null);
                 new ViewHolder(view);
             }
             ViewHolder vh = (ViewHolder) view.getTag();
             vh.position = i;
-            Picasso.with(MainActivity.this)
+            Picasso.with(PickerActivity.this)
                     .load(getItem(i))
                     .fit()
                     .centerCrop()
