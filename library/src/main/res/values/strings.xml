@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">library</string>
+    <string name="app_name">Image Picker</string>
     <string name="selected_item">Selected (%d)</string>
 </resources>
