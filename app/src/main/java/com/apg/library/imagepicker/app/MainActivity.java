@@ -24,6 +24,7 @@ import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.apg.library.imagepicker.AlphaImagePicker;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -46,6 +47,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
+
+        gridView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                AlphaImagePicker.startPickImage(MainActivity.this, 11, false);
+            }
+        }, 5000);
     }
 
     @Override
