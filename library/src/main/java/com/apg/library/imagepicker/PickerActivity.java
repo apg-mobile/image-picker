@@ -43,6 +43,7 @@ public class PickerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_AppCompat_Light);
         setContentView(R.layout.library_activity_picker);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
