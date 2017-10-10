@@ -1,4 +1,4 @@
-package com.apg.library.imagepicker.app;
+package com.apg.library.imagepicker;
 
 import android.app.Activity;
 import android.content.Intent;
