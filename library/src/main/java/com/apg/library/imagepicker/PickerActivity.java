@@ -44,8 +44,8 @@ public class PickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_AppCompat_Light);
-        setTitle(R.string.app_name);
         setContentView(R.layout.library_activity_picker);
+        setTitle(R.string.imagepicker_app_name);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
     }
