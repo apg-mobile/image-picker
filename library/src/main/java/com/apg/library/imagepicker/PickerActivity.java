@@ -46,13 +46,6 @@ public class PickerActivity extends AppCompatActivity {
         setContentView(R.layout.library_activity_picker);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
-
-        gridView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                AlphaImagePicker.startPickImage(PickerActivity.this, 11, false);
-            }
-        }, 5000);
     }
 
     @Override
