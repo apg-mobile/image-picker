@@ -243,9 +243,10 @@ public class PickerActivity extends AppCompatActivity {
         return new ArrayList<>();
     }
 
-    public static void createIntent(Context context, boolean isMultipleSelected) {
+    public static Intent createIntent(Context context, boolean isMultipleSelected) {
 //        Intent intent = new Intent("com.apg.library.imagepicker.PICKIMAGE");
         Intent intent = new Intent(context, PickerActivity.class);
         intent.putExtra("isMultipleSelected", isMultipleSelected);
+        return intent;
     }
 }

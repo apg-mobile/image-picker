@@ -4,7 +4,7 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
-        android:theme="@style/AlphaImagePickerTheme">
+        android:theme="@style/Theme.AppCompat.Light">
 
         <activity
             android:name=".PickerActivity"
