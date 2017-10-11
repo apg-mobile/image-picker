@@ -25,6 +25,7 @@ import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -37,7 +38,7 @@ public class PickerActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 15200;
 
     private ArrayList<Uri> images = new ArrayList<>();
-    private ArrayList<Integer> selected = new ArrayList<>();
+    private ArrayList<Uri> selected = new ArrayList<>();
     private GridView gridView;
     private boolean isNeverShowAgain = false;
     private boolean isMultipleSelected = false;
@@ -63,12 +64,8 @@ public class PickerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menuOk) {
-            ArrayList<Uri> results = new ArrayList<>();
-            for (Integer position : selected) {
-                results.add(images.get(position));
-            }
             Intent intent = new Intent();
-            intent.putParcelableArrayListExtra("result", results);
+            intent.putParcelableArrayListExtra("result", selected);
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -176,19 +173,29 @@ public class PickerActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(int position, View view, ViewGroup viewGroup) {
             if (view == null) {
                 view = View.inflate(PickerActivity.this, R.layout.alphaimagepicker_listitem_image, null);
                 new ViewHolder(view);
             }
+            Uri item = getItem(position);
             ViewHolder vh = (ViewHolder) view.getTag();
-            vh.position = i;
+            vh.position = position;
             Picasso.with(PickerActivity.this)
-                    .load(getItem(i))
+                    .load(item)
                     .fit()
                     .centerCrop()
                     .into(vh.imageView);
-            boolean isSelected = selected.contains(i);
+            boolean isSelected = false;
+            String sequence = "";
+            for (int i = 0; i < selected.size(); i++) {
+                if (selected.get(i) == item) {
+                    isSelected = true;
+                    sequence = (i + 1) + "";
+                    break;
+                }
+            }
+            vh.tvSequence.setText(sequence);
             vh.checkbox.setChecked(isSelected);
             vh.imageView.setScaleY(isSelected ? 0.6f : 1.0f);
             vh.imageView.setScaleX(isSelected ? 0.6f : 1.0f);
@@ -198,28 +205,25 @@ public class PickerActivity extends AppCompatActivity {
         class ViewHolder {
             private ImageView imageView;
             private CompoundButton checkbox;
+            private TextView tvSequence;
             private int position = 0;
 
             ViewHolder(View itemView) {
                 imageView = itemView.findViewById(R.id.imageview);
+                tvSequence = itemView.findViewById(R.id.tvSequence);
                 checkbox = itemView.findViewById(R.id.checkbox);
                 checkbox.setVisibility(isMultipleSelected ? View.VISIBLE : View.GONE);
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (selected.contains(position)) {
-                            Iterator<Integer> iterator = selected.iterator();
-                            while (iterator.hasNext()) {
-                                Integer next = iterator.next();
-                                if (next == position) iterator.remove();
-                            }
+                        Uri item = images.get(position);
+                        if (selected.contains(item)) {
+                            selected.remove(item);
                         } else {
-                            selected.add(position);
+                            selected.add(item);
                             if (!isMultipleSelected) {
                                 ArrayList<Uri> results = new ArrayList<>();
-                                for (Integer position : selected) {
-                                    results.add(images.get(position));
-                                }
+                                results.add(item);
                                 Intent intent = new Intent();
                                 intent.putParcelableArrayListExtra("result", results);
                                 setResult(RESULT_OK, intent);
