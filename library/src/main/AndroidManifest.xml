@@ -1,10 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.apg.library.imagepicker">
 
-    <application
-        android:allowBackup="true"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light">
+    <application>
 
         <activity
             android:name=".PickerActivity"
