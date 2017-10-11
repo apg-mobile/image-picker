@@ -1,6 +1,8 @@
 package com.apg.library.imagepicker;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -44,8 +46,8 @@ public class PickerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_AppCompat_Light);
-        setContentView(R.layout.library_activity_picker);
-        setTitle(R.string.imagepicker_app_name);
+        setContentView(R.layout.alphaimagepicker_activity_picker);
+        setTitle(R.string.alphaimagepicker__app_name);
         gridView = (GridView) findViewById(R.id.grid);
         isMultipleSelected = getIntent().getBooleanExtra("isMultipleSelected", false);
     }
@@ -53,7 +55,7 @@ public class PickerActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (isMultipleSelected) {
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+            getMenuInflater().inflate(R.menu.alphaimagepicker_menu_main, menu);
         }
         return super.onCreateOptionsMenu(menu);
     }
@@ -152,7 +154,7 @@ public class PickerActivity extends AppCompatActivity {
             }
         }
         if (isMultipleSelected) {
-            setTitle(getString(R.string.selected_item, selected.size()));
+            setTitle(getString(R.string.alphaimagepicker_selected_item, selected.size()));
         }
     }
 
@@ -176,7 +178,7 @@ public class PickerActivity extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             if (view == null) {
-                view = View.inflate(PickerActivity.this, R.layout.listitem_image, null);
+                view = View.inflate(PickerActivity.this, R.layout.alphaimagepicker_listitem_image, null);
                 new ViewHolder(view);
             }
             ViewHolder vh = (ViewHolder) view.getTag();
@@ -225,11 +227,25 @@ public class PickerActivity extends AppCompatActivity {
                             }
                         }
                         notifyDataSetChanged();
-                        setTitle(getString(R.string.selected_item, selected.size()));
+                        setTitle(getString(R.string.alphaimagepicker_selected_item, selected.size()));
                     }
                 });
                 itemView.setTag(this);
             }
         }
+    }
+
+
+    public static ArrayList<Uri> getResultFromIntent(int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK && data != null && data.hasExtra("result")) {
+            return data.getParcelableArrayListExtra("result");
+        }
+        return new ArrayList<>();
+    }
+
+    public static void createIntent(Context context, boolean isMultipleSelected) {
+//        Intent intent = new Intent("com.apg.library.imagepicker.PICKIMAGE");
+        Intent intent = new Intent(context, PickerActivity.class);
+        intent.putExtra("isMultipleSelected", isMultipleSelected);
     }
 }

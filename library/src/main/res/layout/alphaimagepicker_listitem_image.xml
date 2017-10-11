@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="@dimen/image_size"
-        android:layout_height="@dimen/image_size"
+        android:layout_width="@dimen/alphaimagepicker_image_size"
+        android:layout_height="@dimen/alphaimagepicker_image_size"
         android:layout_gravity="center"
         android:adjustViewBounds="true"/>
 

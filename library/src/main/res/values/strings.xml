@@ -1,4 +1,4 @@
 <resources>
-    <string name="imagepicker_app_name">Image Picker</string>
-    <string name="selected_item">Selected (%d)</string>
+    <string name="alphaimagepicker__app_name">Image Picker</string>
+    <string name="alphaimagepicker_selected_item">Selected (%d)</string>
 </resources>

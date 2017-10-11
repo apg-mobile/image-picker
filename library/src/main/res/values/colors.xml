@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fff</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#008cff</color>
+    <color name="alphaimagepicker_colorPrimary">#fff</color>
+    <color name="alphaimagepicker_colorPrimaryDark">#000000</color>
+    <color name="alphaimagepicker_colorAccent">#008cff</color>
 </resources>
