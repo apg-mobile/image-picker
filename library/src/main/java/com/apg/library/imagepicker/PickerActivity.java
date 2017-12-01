@@ -27,11 +27,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class PickerActivity extends AppCompatActivity {
 
@@ -181,9 +178,8 @@ public class PickerActivity extends AppCompatActivity {
             Uri item = getItem(position);
             ViewHolder vh = (ViewHolder) view.getTag();
             vh.position = position;
-            Picasso.with(PickerActivity.this)
+            GlideApp.with(PickerActivity.this)
                     .load(item)
-                    .fit()
                     .centerCrop()
                     .into(vh.imageView);
             boolean isSelected = false;
